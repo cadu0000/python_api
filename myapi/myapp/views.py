@@ -1,15 +1,26 @@
 from django.shortcuts import render
-from .models import Music
-
-# Create your views here.
-
+from .models import Music  # Importe seu modelo Music aqui
 
 def get_musics(request):
-    list_musics = Music.objects.name
-    context = {'musics': list_musics}
-    return render(request, '/musics', context)
+    # Supondo que você queira recuperar todos os objetos Music
+    musics = Music.objects.all()  # Isso depende da estrutura do seu modelo Music
 
-def get_bests_musics(request):
-    list_bests_musics = Music.objects.filter(music_rating='10')
-    context = {'best_musics': list_bests_musics}
-    return render(request, '/musics/best', context)
+    # Crie um contexto com os dados que você deseja passar para o template
+    context = {
+        'musics': musics,  # Passa os objetos Music para o template
+    }
+
+    # Renderize o template 'list.html' com o contexto
+    return render(request, 'template.html', context)
+
+def get_music_by_name(request):
+    # Supondo que você queira recuperar todos os objetos Music
+    musics = Music.music_name  # Isso depende da estrutura do seu modelo Music
+
+    # Crie um contexto com os dados que você deseja passar para o template
+    context = {
+        'musics': musics,  # Passa os objetos Music para o template
+    }
+
+    # Renderize o template 'list.html' com o contexto
+    return render(request, 'template.html', context)
